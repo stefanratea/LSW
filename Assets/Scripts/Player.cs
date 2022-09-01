@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public SpriteResolver Dress;
 
     public float moveSpeed = 5f;
-    Animator animator;
+    public Animator animator;
     Rigidbody2D rb;
     Vector2 movement;
     bool isFacingRight;
@@ -70,12 +70,18 @@ public class Player : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public void EquipHair(string name, string category)
+    public void EquipHair(string name)
     {
-        Hair.SetCategoryAndLabel(category, name);
+        Hair.SetCategoryAndLabel("Hair", name);
     }
-    public void EquipDress(string name, string category)
+    public void EquipDress(string name)
     {
-        Dress.SetCategoryAndLabel(category, name);
+        Dress.SetCategoryAndLabel("Dress", name);
+    }
+    public bool isEquiped(string name)
+    {
+        if (Hair.GetLabel().Equals(name)) return true;
+        if (Dress.GetLabel().Equals(name)) return true;
+        return false;
     }
 }

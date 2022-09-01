@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 //when something get into the alta, make the runes glow
@@ -14,9 +15,17 @@ namespace Cainos.PixelArtTopDown_Basic
         private Color curColor;
         private Color targetColor;
 
+        public GameObject Writing;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             targetColor = new Color(1, 1, 1, 1);
+            if (Writing.active == true)
+            {
+                GameManager.instance.managerUI.dialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Well, hello there little girl ! Welcome to the magic shop where you can buy amazing items !";
+                GameManager.instance.managerUI.dialogueBox.SetActive(true);
+                Writing.SetActive(false);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
